@@ -4,18 +4,22 @@ local hanja_korean_pair = require 'hanjakorean.pairs'
 local UnicodeHanjaBase = 0x3400
 local UnicodeHanjaLast = 0x9FFF
 
+local CJKCompatibilityBase = 0xF900
+local CJKCompatibilityLast = 0xFAFF
+
 local reader = function(str)
    local t = {}
    for i = 1, utf8.len(str) do
       local byte = utf8.byte(str,i,i)
-      if ((byte < UnicodeHanjaBase) or (byte > UnicodeHanjaLast)) then
-         table.insert(t,utf8.char(byte))
-      else
+      if ((UnicodeHanjaBase < byte) and (byte < UnicodeHanjaLast) or
+         (CJKCompatibilityBase< byte) and (byte < CJKCompatibilityLast)) then
          if( hanja_korean_pair[byte] ~= nil ) then
             table.insert(t,utf8.char(hanja_korean_pair[byte]))
          else
             table.insert(t,utf8.char(byte))
          end
+      else
+         table.insert(t,utf8.char(byte))
       end
    end
    local s = table.concat(t,"")

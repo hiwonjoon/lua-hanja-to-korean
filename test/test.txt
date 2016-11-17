@@ -20,3 +20,6 @@ wf wf ㅈㄹ ㅈㄷㅈㄷㄹ ㅈㄹㄴ 리ㅓ 2지 ㅓ23기ㅓ23ㅣ!ㅓ엘러메
 오늘밤에도 별이 바람에 스치운다. 
 
 ABCDEFG HI JK !
+
+-- CJK Compatibility Ideographs
+瑩
